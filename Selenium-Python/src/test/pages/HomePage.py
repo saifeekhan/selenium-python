@@ -1,17 +1,18 @@
 from test.pages.Vault import Vault
+from test.locators.Locators import Locators
 class HomePage():
     # Constructor
     def __init__(self, driver):
         self.driver = driver;
-        self.ripple_menu_xpath = "//span[@class='ripple']"
-        self.settings_link_xpath = "//i[@class='fa fa-cog fa-lg']"
-        self.logout_link_xpath="// a[contains(text(), 'Log Out')]"
+        self.settings_link_xpath = Locators.settings_link_xpath
+        self.logout_link_xpath = Locators.logout_link_xpath
+        self.logo_img_xpath = Locators.logo_img_xpath
 
-        self.vault_menu_xpath = "//a[contains(text(),'Vault')]"
-        self.vault_subMenu_xpath="//a[contains(text(),'Stock Deposit/Withdraw')]"
+        self.vault_menu_xpath = Locators.vault_menu_xpath
+        self.vault_subMenu_xpath = Locators.vault_subMenu_xpath
 
     def verifyHomePg(self):
-        assert(self.driver.find_element_by_xpath(self.ripple_menu_xpath)!=0),"Home Page not loaded."
+        assert(self.driver.find_element_by_xpath(self.logo_img_xpath)!=0), "Home Page not loaded."
 
     def logOut(self):
         self.driver.find_element_by_xpath(self.settings_link_xpath).click()

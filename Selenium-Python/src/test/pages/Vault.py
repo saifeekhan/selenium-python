@@ -2,17 +2,18 @@ from selenium.webdriver.support.wait import WebDriverWait
 import selenium.webdriver.support.expected_conditions as ec
 from selenium.webdriver.common.by import By
 from test.utils.WijmoUtils import WijmoUtils
+from test.locators.Locators import Locators
 
 class Vault():
     def __init__(self, driver):
         self.driver = driver;
-        self.pgCaption_label_xpath = "//span[contains(text(),'Deposits / Withdrawal')]"
-        self.addStock_button_xpath = "//i[contains(@class,'fa fa-plus')]"
+        self.pgCaption_label_xpath = Locators.vault_pgCaption_label_xpath
+        self.addStock_button_xpath = Locators.vault_addStock_button_xpath
 
         # XPath of Exchange combo
-        self.exchange_input_xpath = "//wj-combo-box[@id='exchangeId']//input[@class='wj-form-control']"
-        self.exchange_combo_xpath = "//wj-combo-box[@id='exchangeId']//span[@class='wj-glyph-down']"
-
+        self.exchange_input_xpath = Locators.vault_exchange_input_xpath
+        self.exchange_combo_xpath = Locators.vault_exchange_combo_xpath
+        
         # XPath of Custodian
         self.cust_combo_xpath = "//wj-combo-box[@id='custodianId']//span[contains(@class,'wj-glyph-down')]"
 
@@ -34,12 +35,11 @@ class Vault():
         self.save_btn_xpath = "//button[@id='btnSave']"
 
         # XPath success message
-        self.msg_pop_xpath = "//wj-popup[@class='green_dialog wj-control wj-content wj-popup wj-state-focused']//p[contains(text(),'Record Saved Successfully.')]"
+        #self.msg_pop_xpath = "//wj-popup[@class='green_dialog wj-control wj-content wj-popup wj-state-focused']//p[contains(text(),'Record Saved Successfully.')]"
         self.okBtn_pop_xpath = "//wj-popup[@class='green_dialog wj-control wj-content wj-popup wj-state-focused']//button[@class='btn btn-default wj-hide'][contains(text(),'Ok')]"
 
         # XPath of Type combo
         self.type_combo_xpath = "//wj-combo-box[@id='entryType']//span[contains(@class,'wj-glyph-down')]"
-        self.type_item_xpath = "//div[@wj-part='dropdown']//div"
 
         #####################################3
 
@@ -56,8 +56,8 @@ class Vault():
     def setData(self, security, account, qty):
         driver = self.driver
         utils = WijmoUtils (driver)
-        wait = WebDriverWait(driver, 20)
-        wait.until(ec.element_to_be_clickable((By.XPATH, self.exchange_combo_xpath)))
+        #wait = WebDriverWait(driver, 20)
+        #wait.until(ec.element_to_be_clickable((By.XPATH, self.exchange_combo_xpath)))
 
         # Setting GSE exchange
         utils.WijmoList(self.exchange_combo_xpath, "GSE")

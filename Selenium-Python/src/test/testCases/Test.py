@@ -28,7 +28,7 @@ class scenario_a (EnvironmentSetup):
 
         vaultPg = Vault(driver)
         vaultPg.addStock()
-        vaultPg.setData("ABL","0000000550680-LI/0 - [ANEBA THOMAS NASEH MR.]","300")
+        vaultPg.setData("ABL","0000000550680-LI/0","300")
         time.sleep(5)
         vaultPg.getData()
 

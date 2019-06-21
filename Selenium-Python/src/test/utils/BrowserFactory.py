@@ -18,6 +18,5 @@ class BrowserFactory():
         driver.implicitly_wait(20)
         driver.maximize_window()
 
-
-
         return driver
+    

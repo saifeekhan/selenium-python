@@ -1,35 +1,33 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from test.locators.Locators import Locators
 
 class LoginPage():
 
     # Constructor
     def __init__(self, driver):
         self.driver = driver
-        self.userid_textbox_name = "email"
-        self.password_textbox_name = "password"
-        self.login_button_xpath="//button[@class='login_btn']"
+        self.userid_text_name = Locators.userid_text_name
+        self.password_text_name = Locators.password_text_name
+        self.login_submit_xpath = Locators.login_submit_xpath
 
-    def setData(self, id, pwd):
+    def setData(self, uid, pwd):
         self.verifyTitle()
-        # R&D
-        # print ("Login Form")
-        # print (len(self.driver.find_elements(By.NAME,self.userid_textbox_name)))
-        ####
-        self.driver.find_element_by_name(self.userid_textbox_name).clear()
-        self.driver.find_element_by_name(self.userid_textbox_name).send_keys(id)
+        
+        self.driver.find_element_by_name(self.userid_text_name).clear()
+        self.driver.find_element_by_name(self.userid_text_name).send_keys(uid)
 
-        self.driver.find_element_by_name(self.password_textbox_name).clear()
-        self.driver.find_element_by_name(self.password_textbox_name).send_keys(pwd)
+        self.driver.find_element_by_name(self.password_text_name).clear()
+        self.driver.find_element_by_name(self.password_text_name).send_keys(pwd)
 
-        self.driver.find_element_by_xpath(self.login_button_xpath).click()
+        self.driver.find_element_by_xpath(self.login_submit_xpath).click()
 
 
     def verifyTitle(self):
         assert (self.driver.title =="Marlin by Infotech"), "Page title not found."
 
     def verifyLoginField(self):
-        assert (self.driver.find_element_by_name(self.userid_textbox_name)!=0),"Login field not found."
+        assert (self.driver.find_element_by_name(self.userid_text_name)!=0),"Login field not found."
 
 
